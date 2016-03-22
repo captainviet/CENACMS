@@ -251,6 +251,26 @@ As the UI has been completed, there should be not much concern about these.
 
 See the documentation should you want more details. (link below)
 
+##### Client vs Server
+In order to point out if a bunch of code should be executed on the client side, wrap that into this statement:
+```
+if (Meteor.isClient) {
+  //code here
+}
+```
+
+The same thing can be done for server code:
+```
+if (Meteor.isServer) {
+  //code here
+}
+```
+
+Client-ish code include declaration of helpers, templates, jQuery and various other public logic.
+Server-ish code include database interaction, user account handling and various other private logic.
+
+_Note: We are currently in the protoyping stage, at which you can still declare server code on the client side for the sake of convienence. We'll fix that later on in stage 2. An exception to this is user account handling code, which is bound to be done on the server side._
+
 ##### Basic CLI commands
 These are the fundamental things you can do to a project with CLI (all these only work AFTER you have navigated to the project folder):
 
