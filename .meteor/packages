@@ -22,3 +22,4 @@ iron:router
 twbs:bootstrap
 fortawesome:fontawesome
 dburles:google-maps
+biasport:facebook-sdk
