@@ -4,7 +4,7 @@
 Crisis Emergency Notification Advisory as a Crisis Management System
 
 ## Meteor Basics
-This section as been moved to a separate repo.
+This section has been moved to a separate repo.
 
 Please do have a look here: https://github.com/itsnhduc/MeteorLEGO
 
