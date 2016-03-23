@@ -10,6 +10,21 @@ A full-stack JavaScript framework where everything from the client side to the s
 ##### Before you proceed
 The following sections assume that you have basic knowledge of HTML, CSS and JavaScript as well as basic CLI (Command Line Interface) commands.
 
+##### File structure
+There is no standard way to do this. The following structure is the one that I found most comfortable to work with, and is compatible with Meteor's support:
+```
+[project folder]
+>  client       // client logic & views
+   >  css          // stylesheets
+   >  lib          // client logic
+   >  templates    // templates
+>  lib          // code that resides on both client and server (like router, collections...)
+>  server       // server logic (not visible to the client)
+>  public       // other things made available for anyone to access
+   >  img          // images, to reference something inside, write '/img/[filename]'
+   >  vid          // videos (if applicable), to reference some thing inside, write '/vid/[filename]'
+```
+
 ##### Templates
 Templates are the equivalent of html files in Meteor, except that is does not require tags like `<html>` or `<body>`. Meteor takes care of these stuff for you.
 
