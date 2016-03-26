@@ -58,3 +58,7 @@ form > table > tr > td > button {
 	max-width: 100%;
 	height: 500px;
 }
+
+.warning {
+	color: red;
+}
