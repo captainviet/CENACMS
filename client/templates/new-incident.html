@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<th><label for="quantity">Quantity: </label></th>
-					<td><input id="quantity" class="form-control" type="number"></td>
+					<td><input id="quantity" class="form-control" type="number" value="0"></td>
 				</tr>
 				<tr>
 					<th><label for="details">Details: </label></th>
@@ -43,8 +43,9 @@
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-default">Cancel</button>
-						<button class="btn btn-default">Send</button>
+						<button id="cancel" class="btn btn-default">Cancel</button>
+						<button id="send" class="btn btn-default">Send</button>
+						<span class="glyphicon glyphicon-ok hidden"></span>
 					</td>
 				</tr>
 			</table>

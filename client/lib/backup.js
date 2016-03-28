@@ -2,52 +2,46 @@ if (Meteor.isClient) {
 
 	Meteor.subscribe('backups');
 
-	Template.backup.events({
-		'click .send': function (event) {
-			event.preventDefault();
-			var option = event.target.agency.value,
-			text = event.target.text.value;
-			event.target.text.value = "";
-			Meteor.call('sendMessage', option, text);
-		},
-		'click .cancel': function (event) {
-			
+	Session.set('add-agency', false)
+
+	Template.backup.helpers({
+		addButtonPressed: function () {
+			return Session.get('add-agency');
 		}
 	})
 
-}
-
-if (Meteor.isServer) {
-
-	Meteor.startup(function () {
-		process.env.TWILIO_ACCOUNT_SID = 'AC061f3261f802d23a6dd90f35a3eefa71';
-		process.env.TWILIO_AUTH_TOKEN = '024296fd85ec53f8e75569944800c343';
-		process.env.TWILIO_NUMBER = '+12035806804';
-	});
-
-	Backups = new Mongo.Collection('backups');
-
-	Meteor.publish('backups', function () {
-		return Backups.find({});
-	});
-
-	Meteor.methods({
-		sendMessage: function (option, text) {
-			var agencyNumber = Backups.findOne({option: option});
-			var sendNumber = agencyNum.number;
-			HTTP.call("POST", 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/SMS/Messages.json', {
-				params: {
-					From: process.env.TWILIO_NUMBER,
-					To: sendNumber,
-					Body: text
-				}, auth:
-				process.env.TWILIO_ACCOUNT_SID + ':' + process.env.TWILIO_AUTH_TOKEN
-			}, function (error) {
-				if (error)
-					console.log(error);
-				else
-					console.log('SMS sent!');
-			});
+	Template.backup.events({
+		'click #send': function (event) {
+			event.preventDefault();
+			var option = $('#agency').val();
+			var text = $('#text').val();
+			$('#agency').prop('selectedIndex', 0);
+			$('#text').val("");
+			Meteor.call('sendMessage', option, text);
+			// Meteor.call('something');
+			var no = Session.get('phone-no');
+			console.log(no);
+		},
+		'click #add-agency': function (event) {
+			event.preventDefault();
+			Session.set('add-agency', true);
+		},
+		'click #add': function (event) {
+			event.preventDefault();
+			var agencyName = $('#agency-name').val();
+			var agencyNumber = $('#agency-number').val();
+			if (agencyNumber)
+			var lastOption = Backups.findOne().option;
+			var createOption = function (lastOption, agencyName) {
+				var string = '<option value="' + (lastOption + 1) + '">' + agencyName + '</option>';
+				return string;
+			}
+			$('#agency').append(createOption(lastOption, agencyName));
+			Meteor.call('addAgency', lastOption, agencyNumber);
+			$('#agency-name').val("");
+			$('#agency-number').val("");
+			Session.set('add-agency', false);
 		}
 	});
+
 }

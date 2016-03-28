@@ -59,6 +59,10 @@ form > table > tr > td > button {
 	height: 500px;
 }
 
+.glyphicon-ok {
+	color: #3C763D;
+}
+
 .warning {
 	color: red;
 }
