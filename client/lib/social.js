@@ -23,10 +23,31 @@ if (Meteor.isClient) {
     };
 
     Template.social.events({
+
+        /**
+         * Click publish event
+         */
+
         'click #publishBtn': function (event) {
             event.preventDefault();
-            //publishToFacebook();
-            publishToTwitter();
+            var fbChecked = $('#facebookCheckBox').is(':checked');
+            var twChecked = $('#twitterCheckBox').is(':checked');
+            if (fbChecked) {
+                publishToFacebook();
+            }
+            if (twChecked) {
+                publishToTwitter();
+            }
+        },
+
+        /**
+         * Click preview event
+         */
+
+        'click #previewBtn': function (event) {
+            event.preventDefault();
+            var publishMsg = generatePost();
+            alert('Post content: \n' + publishMsg);
         }
     });
 
@@ -70,9 +91,6 @@ function publishToFacebook() {
             }, {scope: 'publish_actions'});
         }
     });
-}
-
-function initTwitter() {
 }
 
 function publishToTwitter() {
