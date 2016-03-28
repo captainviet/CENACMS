@@ -62,3 +62,7 @@ form > table > tr > td > button {
 .glyphicon-ok {
 	color: #3C763D;
 }
+
+.warning {
+	color: red;
+}

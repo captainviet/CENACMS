@@ -2,7 +2,7 @@
 	<div class="col-md-4 col-md-offset-4">
 		<h3 class="text-center">CENA Operator Login</h3>
 		<br>
-		<form>
+		<form class="user-login">
 			<table class="table">
 				<tr>
 					<th><label for="username">Username: </label></th>
@@ -12,11 +12,18 @@
 					<th><label for="password">Password: </label></th>
 					<td><input id="password" class="form-control" type="text"></td>
 				</tr>
+
+				<tr>
+					<td></td>
+					<td class="warning">
+						{{err}}
+					</td>
+				</tr>
+
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-default" id="loginBtn">Login</button>
-						<!-- <button class="btn btn-default">Show public view</button> -->
+						<button id="login-btn" class="btn btn-default">Login</button>
 						or <a href="/public">Show public view</a>
 					</td>
 				</tr>

@@ -1,36 +1,60 @@
 <template name="backup">
 	<div class="col-md-4 col-md-offset-4">
-		<h3 class="text-center">Request for Backup</h3>
+		{{#if addButtonPressed}}
+			<h3 class="text-center">Add new Backup Agency</h3>
+		{{else}}
+			<h3 class="text-center">Request for Backup</h3>
+		{{/if}}
 		<br>
-		<form>
+		<form id="backup-form">
 			<table class="table">
-				<tr>
-					<th><label for="agency">Agency: </label></th>
-					<td>
-						<select id="agency" class="form-control">
-							<option>A</option>
-							<option>B</option>
-							<option>C</option>
-							<option>D</option>
-							<option>E</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th><label for="text">Text: </label></th>
-					<td><textarea id="text" class="form-control"></textarea></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><a href="#">Add another agency</a></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<button class="btn btn-default">Cancel</button>
-						<button class="btn btn-default">Send</button>
-					</td>
-				</tr>
+				{{#unless addButtonPressed}}
+					<tr>
+						<th><label for="agency">Agency: </label></th>
+						<td>
+							<select id="agency" class="form-control">
+								<option value="1">Emergency Ambulance</option>
+								<option value="2">Rescue and Evacuation</option>
+								<option value="3">Fire-Fighting</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="text">Text: </label></th>
+						<td><textarea id="text" class="form-control"></textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a id="add-agency" href="#">Add another agency</a></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<button id="send" class="btn btn-default">Send</button>
+							<button id="cancel-send" class="btn btn-default">Cancel</button>
+						</td>
+					</tr>
+				{{else}}
+					<tr>
+						<th><label for="agency-name">Agency Name: </label></th>
+						<td>
+							<input id="agency-name" class="form-control" type="text">
+						</td>
+					</tr>
+					<tr>
+						<th><label for="agency-number">Agency Number: </label></th>
+						<td>
+							<input id="agency-number" class="form-control" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<button id="add" class="btn btn-default">Add Agency</button>
+							<button id="cancel-add" class="btn btn-default">Cancel</button>
+						</td>
+					</tr>
+				{{/unless}}
 			</table>
 		</form>
 	</div>
