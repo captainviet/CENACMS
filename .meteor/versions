@@ -35,7 +35,6 @@ html-tools@1.0.5
 htmljs@1.0.5
 http@1.1.1
 id-map@1.0.4
-insecure@1.0.4
 iron:controller@1.0.12
 iron:core@1.0.11
 iron:dynamic-template@1.0.12
@@ -69,11 +68,8 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
-<<<<<<< HEAD
-service-configuration@1.0.5
-=======
 schiller:twit@0.0.3
->>>>>>> ac164cd076565bfa6178c258dfb35620e1da4322
+service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
 spacebars@1.0.7

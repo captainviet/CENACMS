@@ -30,14 +30,16 @@ if (Meteor.isClient) {
 			event.preventDefault();
 			var agencyName = $('#agency-name').val();
 			var agencyNumber = $('#agency-number').val();
-			if (agencyNumber)
+			if (agencyNumber.charAt(0) === '8' || agencyNumber.charAt(0) === '9')
+				agencyNumber = '+65' + agencyNumber;
 			var lastOption = Backups.findOne().option;
 			var createOption = function (lastOption, agencyName) {
-				var string = '<option value="' + (lastOption + 1) + '">' + agencyName + '</option>';
+				var string = '<option value="' + (Number(lastOption) + 1) + '">' + agencyName + '</option>';
+				console.log(string);
 				return string;
 			}
 			$('#agency').append(createOption(lastOption, agencyName));
-			Meteor.call('addAgency', lastOption, agencyNumber);
+			Meteor.call('addAgency', Number(lastOption) + 1, agencyNumber);
 			$('#agency-name').val("");
 			$('#agency-number').val("");
 			Session.set('add-agency', false);

@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 
 	Meteor.methods({
 		sendMessage: function (option, text) {
-			var agencyNumber = Backups.findOne({option: option});
+			var agencyNumber = Backups.findOne({option: String(option)});
 			var sendNumber = agencyNumber.number;
 			HTTP.call("POST", 'https://api.twilio.com/2010-04-01/Accounts/' + process.env.TWILIO_ACCOUNT_SID + '/SMS/Messages.json', {
 				params: {
@@ -29,12 +29,13 @@ if (Meteor.isServer) {
 			});
 		},
 		changeNumber: function (option, number) {
-			var agencyNumber = Backups.findOne({option: option});
+			var agencyNumber = Backups.findOne({option: String(option)});
 			Backups.update(agencyNumber._id, {$set: {number: number}});
 			console.log('Option ' + option + ' changed to ' + number + '!');
 		},
 		addAgency: function (option, number) {
-			Backups.insert({option: option, number: number});
+			console.log('added ' + number + '!');
+			Backups.insert({option: String(option), number: number});
 		}
 	});
 }

@@ -16,16 +16,11 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-insecure                # Allow all DB writes from clients (for prototyping)
 iron:router
 twbs:bootstrap
 fortawesome:fontawesome
 dburles:google-maps
-<<<<<<< HEAD
 http
 accounts-password
-=======
 biasport:facebook-sdk
-
 schiller:twit
->>>>>>> ac164cd076565bfa6178c258dfb35620e1da4322

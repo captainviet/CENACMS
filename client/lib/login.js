@@ -11,6 +11,7 @@ if (Meteor.isClient) {
 			event.preventDefault();
 			var username = $('#username').val();
 			var password = $('#password').val();
+			console.log(username + ' ' + password);
 			Meteor.loginWithPassword(username, password, function(err) {
 				if (err) {
 					console.log(err);
@@ -25,5 +26,3 @@ if (Meteor.isClient) {
 	})
 }
 
-if (Meteor.isServer) {
-}
