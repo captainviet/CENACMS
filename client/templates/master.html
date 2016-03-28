@@ -1,4 +1,4 @@
-<template name="master">
+<template name="master"> <!-- this is a master page -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -13,22 +13,22 @@
 			<div class="collapse navbar-collapse" id="navbar-content">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="/">Home</a>
+						<a id="login" class="nav-btn" href="/">Home</a>
 					</li>
 					<li>
-						<a href="/new-incident">New Incident</a>
+						<a id="new-incident" class="nav-btn" href="/new-incident">New Incident</a>
 					</li>
 					<li>
-						<a href="/backup">Send Request</a>
+						<a id="backup" class="nav-btn" href="/backup">Send Request</a>
 					</li>
 					<li>
-						<a href="/map">View Map</a>
+						<a id="map" class="nav-btn" href="/map">View Map</a>
 					</li>
 					<li>
-						<a href="/social">Send Update</a>
+						<a id="social" class="nav-btn" href="/social">Send Update</a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-cog"></i></a>
+						<a id="settings" class="nav-btn" href="#"><i class="fa fa-cog"></i></a>
 					</li>
 				</ul>
 			</div>
