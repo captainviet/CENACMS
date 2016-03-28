@@ -4,6 +4,7 @@ autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
 base64@1.0.4
+biasport:facebook-sdk@0.2.2
 binary-heap@1.0.4
 blaze@2.1.3
 blaze-html-templates@1.0.1
@@ -68,7 +69,11 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
+<<<<<<< HEAD
 service-configuration@1.0.5
+=======
+schiller:twit@0.0.3
+>>>>>>> ac164cd076565bfa6178c258dfb35620e1da4322
 session@1.1.1
 sha@1.0.4
 spacebars@1.0.7
