@@ -1,3 +1,5 @@
+/* Created by Vince Dang */
+
 if (Meteor.isClient) {
 
 	Template.login.helpers({
@@ -12,6 +14,7 @@ if (Meteor.isClient) {
 			var username = $('#username').val();
 			var password = $('#password').val();
 			console.log(username + ' ' + password);
+			console.log(Meteor.users.find().fetch());
 			Meteor.loginWithPassword(username, password, function(err) {
 				if (err) {
 					console.log(err);
