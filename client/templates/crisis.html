@@ -4,17 +4,30 @@
 		<br>
 		<form>
 			<table class="table">
-				<tr>
-					<th><label for="act-code">Activation Code: </label></th>
-					<td><input id="act-code" class="form-control" type="text"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<button id="cancel" class="btn btn-default">Cancel</button>
-						<button id="panic" class="btn btn-default">Panic!</button>
-					</td>
-				</tr>
+				{{#if requestSent}}
+					<tr>
+						<th><label for="act-code">Activation Code: </label></th>
+						<td><input id="act-code" class="form-control" type="text"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<th><a href="#" id="re-send">Did not receive any code? Click to resend</a></th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<button id="panic" class="btn btn-default">Panic!</button>
+							<button id="cancel" class="btn btn-default">Cancel</button>
+						</td>
+					</tr>
+				{{else}}
+					<tr>
+						<th></th>
+						<td>
+							<button id="send-code" class="btn btn-default">Request Activation Code</button>
+						</td>
+					</tr>
+				{{/if}}
 			</table>
 		</form>
 	</div>
