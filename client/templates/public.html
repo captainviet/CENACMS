@@ -5,15 +5,19 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>3-Hrs PSI</th>
-				<th>Dengue Alert Level</th>
+				<th>Incident type</th>
+				<th>Location</th>
+				<th>Details</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>41</td>
-				<td>Red</td>
-			</tr>
+			{{#each publicIncidents}}
+				<tr>
+					<td>{{type}}</td>
+					<td>{{location}}</td>
+					<td>{{details}}</td>
+				</tr>
+			{{/each}}
 		</tbody>
 	</table>
 </template>

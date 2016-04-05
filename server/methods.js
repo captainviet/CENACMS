@@ -5,8 +5,24 @@ if (Meteor.isServer) {
 	Meteor.publish('backups', function () {
 		return Backups.find({}, {sort: {option: -1}, limit: 1});
 	}); 
+	Meteor.publish('incidents', function() {
+		return Incidents.find();
+	}); 
+	Meteor.publish('requests', function() {
+		return Requests.find();
+	}); 
+	Meteor.publish('hazeDatas', function() {
+		return HazeDatas.find();
+	}); 
+	Meteor.publish('dengueDatas', function() {
+		return DengueDatas.find();
+	});
 	/* Publish the backup option list to client (actually only the one with
 	 largest option value) */
+
+	Accounts.config({
+		forbidClientAccountCreation : true
+	});
 
 	var codeGen = function () {
 		var d = new Date();
@@ -30,13 +46,18 @@ if (Meteor.isServer) {
 		process.env.TWILIO_AUTH_TOKEN = '024296fd85ec53f8e75569944800c343';
 		process.env.TWILIO_NUMBER = '+12035806804';
 		/* Twilio account details */
+			// Accounts.createUser({
+			// 	username: 'duc',
+			// 	password: '123123'
+			// });
+			// console.log('user created');
 	});
 
-	Accounts.onCreateUser(function (options, user) {
-		if (this.userId)
-			return null;
-		else return user;
-	});
+	// Accounts.onCreateUser(function (options, user) {
+	// 	if (this.userId)
+	// 		return null;
+	// 	else return user;
+	// });
 	/* If an user is created from the client side, reject it and return a null
 	 object (needs to be cleaned up periodically */
 
@@ -81,6 +102,13 @@ if (Meteor.isServer) {
 			else
 				console.log('Wrong Activation Code');
 		},
+		addIncident: function(wrap) {
+			Incidents.insert(wrap, function(err) {
+				if (err) {
+					throw new Meteor.Error(err);
+				}
+			});
+		}
 		/* Authenticate the code input by user */
 	});
 }

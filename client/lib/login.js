@@ -2,6 +2,13 @@
 
 if (Meteor.isClient) {
 
+	Template.login.onRendered(function() {
+		Accounts.createUser({
+			username: 'duc',
+			password: '123123'
+		});
+	});
+
 	Template.login.helpers({
 		err: function() {
 			return Session.get('loginError');

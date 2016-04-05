@@ -10,6 +10,17 @@ if (Meteor.isClient) {
 			var targetId = event.target.id;
 			$('.nav-btn').css('font-weight', 'normal');
 			$('#' + targetId).css('font-weight', 'bold');
+		},
+		'click #logout': function() {
+			Meteor.logout();
+		}
+	});
+
+	Template.master.helpers({
+		'isCrisis': function() {
+			if (!Session.get('isCrisis')) {
+				return 'hidden';
+			}
 		}
 	});
 

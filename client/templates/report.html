@@ -1,0 +1,52 @@
+<template name="report">
+	<h1 class="center-block">REPORT</h1>
+	<div class="form-group">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<button id="table" type="button" class="btn state-btn {{btnStateTable}}">Table form</button>
+			<button id="text" type="button" class="btn state-btn {{btnStateText}}">Text form</button>
+		</div>
+	</div>
+	<table class="table table-hover">
+
+		{{#if tableState}}
+		<thead>
+			<tr>
+				<th>Timestamp</th>
+				<th>Incident type</th>
+				<th>Location</th>
+				<th>Resource requested</th>
+				<th>Quantity</th>
+				<th>Details</th>
+			</tr>
+		</thead>
+		{{/if}}
+
+		<tbody>
+			{{#each reportIncidents}}
+				{{#if tableState}}
+					<tr>
+						<td>{{timestamp}}</td>
+						<td>{{type}}</td>
+						<td>{{location}}</td>
+						<td>{{resourceRequested.name}}</td>
+						<td>{{resourceRequested.quantity}}</td>
+						<td>{{details}}</td>
+					</tr>
+				{{else}}
+					<tr>
+						<div class="report-text-containter">
+							<h3>Incident {{type}}</h3>
+							<p>
+								<strong>Time:</strong> {{timestamp}}<br>
+								<strong>Location:</strong> {{location}}<br>
+								<strong>Details:</strong> {{details}}<br>
+								<strong>Resource requested:</strong> {{resourceRequested.name}}x{{resourceRequested.quantity}}
+							</p>
+						</div>
+					</tr>	
+				{{/if}}
+			{{/each}}
+		</tbody>
+
+	</table>
+</template>

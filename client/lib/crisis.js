@@ -21,8 +21,14 @@ if (Meteor.isClient) {
 			var inputCode = $('#act-code').val();
 			console.log(typeof inputCode);
 			$('#act-code').val("")
-			Meteor.call('authenticateCode', inputCode);	// Request the server
-		},												// to authenticate the code
+			Meteor.call('authenticateCode', inputCode, function(err) {
+				if (err) {
+					throw new Meteor.Error(err);
+				} else {
+					Session.set('isCrisis', true);
+				}
+			});	// Request the server to authenticate the code
+		},												 
 		'click #re-send': function (event) {
 			event.preventDefault();
 			Meteor.call('sendCode');	// Request the server to re-send

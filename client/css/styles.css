@@ -66,3 +66,16 @@ form > table > tr > td > button {
 .warning {
 	color: red;
 }
+
+.crisis-text {
+	color: red;
+	position: absolute;
+	top: 0px;
+	right: 20px;
+}
+.report-text-containter {
+	margin: 20px;
+}
+.btn {
+	border-radius: 0px;
+}

@@ -8,7 +8,8 @@ if (Meteor.isClient) {
 			var resource = $('#resource').val();
 			var quantity = $('#quantity').val();
 			var details = $('#details').val();
-			Incidents.insert({
+
+			var wrap = {
 				type: type,
 				location: location,
 				resourceRequested: {
@@ -17,19 +18,17 @@ if (Meteor.isClient) {
 				},
 				details: details,
 				timestamp: new Date()
-			}, function(err) {
-				if (err) {
-					throw new Meteor.Error(err);
-				} else {
-					$('#type').prop('selectedIndex',0);
-					$('#location').val('');
-					$('#resource').prop('selectedIndex',0);
-					$('#quantity').val(0);
-					$('#details').val('');
+			}
+			Meteor.call('addIncident', wrap);
+			console.log('success');
 
-					$('.glyphicon-ok').removeClass('hidden');
-				}
-			});
+			$('#type').prop('selectedIndex',0);
+			$('#location').val('');
+			$('#resource').prop('selectedIndex',0);
+			$('#quantity').val(0);
+			$('#details').val('');
+
+			$('.glyphicon-ok').removeClass('hidden');
 		},
 		'click #cancel': function(event) {
 			event.preventDefault();

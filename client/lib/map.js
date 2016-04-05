@@ -1,5 +1,6 @@
 if (Meteor.isClient) {
 
+	Meteor.subscribe('incidents');
 
 	var queryGenerator = function(str) {
 		var ret = '';
@@ -19,6 +20,7 @@ if (Meteor.isClient) {
 
 	GoogleMaps.ready('map', function(map) {
 		var locationList = Incidents.find().fetch();
+		console.log(locationList);
 		for (var i = 0; i < locationList.length; i++) {
 			var curLocation = locationList[i].location;
 			var path = 'https://maps.googleapis.com/maps/api/geocode/json?address=' 
