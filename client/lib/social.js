@@ -79,18 +79,34 @@ function postToPage(publishMessage) {
 
 function publishToFacebook() {
     var publishMessage = generatePost();
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            console.log('Logged in.');
-            postToPage(publishMessage);
-        }
-        else {
-            FB.login(function(){
-                // Note: The call will only work if you accept the permission request
-                postToPage(publishMessage);
-            }, {scope: 'publish_actions'});
-        }
+    FB.login(function(response){
+        // Note: The call will only work if you accept the permission request
+        console.log(response.authResponse);
+        postToPage(publishMessage);
+    }, {
+        scope: 'manage_pages,publish_pages,publish_actions',
+        auth_type: 'rerequest',
+        return_scopes: true
     });
+
+    // FB.getLoginStatus(function(response) {
+    //     if (response.status === 'connected') {
+    //         console.log('Logged in.');
+    //         console.log(response.authResponse);
+    //         postToPage(publishMessage);
+    //     }
+    //     else {
+    //         FB.login(function(response){
+    //             // Note: The call will only work if you accept the permission request
+    //             console.log(response.authResponse);
+    //             postToPage(publishMessage);
+    //         },{
+    //             scope: 'publish_actions,publish_pages,manage_pages,user_status,status_update',
+    //             auth_type: 'rerequest',
+    //             return_scopes: true
+    //         });
+    //     }
+    // });
 }
 
 function publishToTwitter() {
