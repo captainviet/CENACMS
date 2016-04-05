@@ -9,7 +9,6 @@ This section has been moved to a separate repo.
 Please do have a look here: https://github.com/itsnhduc/MeteorLEGO
 
 ## Work division
-### The first stage (done in parallel)
 #### Vu
 1. backup: (request for a backup) add code for inserting backup object into the *backups* collection
 2. crisis: (activate panic button) add code for verify panic password, cater for what happens after the button is pressed
@@ -27,17 +26,3 @@ Please do have a look here: https://github.com/itsnhduc/MeteorLEGO
 10. collection: (MongoDB collections) add code for declaring the collections
 
 #### Note: Remember to branch out first and commit to it. *DO NOT COMMIT TO MASTER*
-
-### The second stage (done sequentially)
-### [Someone]
-11. Integrate the work all together
-
-### [Someone]
-12. Separate the server login from the client logic, _note_: remove the *insecure* package
-13. Ensure proper server publication & client subscription, _note_: remove the *autopublish* package
-
-### [Someone]
-14. Final styling & proofing of pages
-
-### Duc
-15. Deploy the application
