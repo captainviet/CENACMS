@@ -7,16 +7,12 @@ if (Meteor.isClient) {
 	Session.set('add-agency', false);
 	/* Session boolean variable used to select display content */
 
-	var cleanUpTimer = setInterval(function () {
-			// Meteor.users.remove({username: null});
-			Meteor.logout();
-			console.log('Session expired! User auto-logged out!');
-		}, 900000);
-	/* Set auto logged-out, user database cleanup every 10 minutes */
-
 	Template.backup.helpers({
 		addButtonPressed: function () {
 			return Session.get('add-agency');
+		},
+		agencies: function() {
+			return Backups.find({name: {$not: "Administrator"}});
 		}
 	})
 	/* Return the add-agency session variable to the client .html*/
@@ -42,22 +38,17 @@ if (Meteor.isClient) {
 			var agencyNumber = $('#agency-number').val();
 
 			if ((agencyNumber.charAt(0) !== '8' && agencyNumber.charAt(0) !== '9' && agencyNumber.charAt(0) !== '+') || agencyNumber.length != 8)
-				console.log('Invalid Singapore number!');
+				alert('Invalid Singapore number!');
 			/* Reject insertion request if the number is not a valid Singaporean number (international) */
 			else {
 				if (agencyNumber.charAt(0) !== '+') {
 					agencyNumber = '+65' + agencyNumber;
 					/* Add country code to the number if it's in local form */
 				}
-				var lastOption = Backups.findOne().option;
-				var createOption = function (lastOption, agencyName) {
-					var string = '<option value="' + (Number(lastOption) + 1) + '">' + agencyName + '</option>';
-					console.log(string);
-					return string;
-				}
-				$('select').add(createOption(lastOption, agencyName)).appendTo("select");
-				Meteor.call('addAgency', Number(lastOption) + 1, agencyNumber);
-				/* Add a new .html element (new option) and update the phone number database (backup) */
+				var lastOption = Number(Backups.findOne().option) + 1;
+				$('select').append($('<option></option>').val(lastOption).text(agencyName));
+				Meteor.call('addAgency', lastOption, agencyName, agencyNumber);
+				/* Add a new agency and update the phone number database (backup) */
 			}
 
 			$('#agency-name').val("");

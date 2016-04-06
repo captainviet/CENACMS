@@ -19,7 +19,6 @@ if (Meteor.isClient) {
 		'click #panic': function (event) {
 			event.preventDefault();
 			var inputCode = $('#act-code').val();
-			console.log(typeof inputCode);
 			$('#act-code').val("")
 			Meteor.call('authenticateCode', inputCode, function(err) {
 				if (err) {

@@ -1,0 +1,85 @@
+<!-- Created by Vince Dang -->
+
+<template name="userAdmin">
+	<div class="col-md-4 col-md-offset-4">
+		<h3 class="text=center">Administrator Page</h3>
+		<br>
+		{{#if showUser}}
+			<table class="table" border="4">
+				<tr>
+					<td colspan="4" align="center"><h3><strong><i>List of Operators</i></strong></h3></td>
+				</tr>
+				<tr>
+					<th align="center">Username</th>
+					<th align="center">Admin Rights</th>
+					<th align="center">Reset Account</th>
+					<th></th>
+				</tr>
+				{{#each users}}
+					{{> user}}
+				{{/each}}
+			</table>
+			<br>
+			<table>
+				<tr>
+					<td></td>
+					<td>
+						<button id="add-operator" class="btn btn-default">Add New Operator</button>
+						<button id="logout" class="btn btn-default">Logout</button>
+					</td>
+				</tr>
+			</table>
+		{{else}}
+			<form class="add-user">
+				<table class="table">
+					<tr>
+						<th><label for="new-username">Enter New Username: </label></th>
+						<td><input id="new-username" class="form-control" type="text"></td>
+					</tr>
+					<tr>
+						<th><label for="new-password">Enter Password: </label></th>
+						<td><input id="new-password" class="form-control" type="password"></td>
+					</tr>
+					<tr>
+						<th><label for="new-password-re">Re-Enter Password: </label></th>
+						<td><input id="new-password-re" class="form-control" type="password"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							{{err}}
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<button id="add-user" class="btn btn-default">Confirm</button>
+							<button id="add-cancel" class="btn btn-default">Cancel</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		{{/if}}
+	</div>
+</template>
+
+<template name="user">
+	<tr>
+		<td align="center">
+			<span id="username" class="text">{{username}}</span>
+		</td>
+		<td align="center">	
+			{{#if isAdmin}}
+				<button id="enable-admin">Appoint as Admin</button>
+			{{else}}
+				<button id="remove-admin">Remove as Admin</button>
+			{{/if}}
+		</td>
+		<td align="center">
+			<button id="reset">Request Password Reset</button>
+		</td>
+		<td align="right">
+			<button id="delete">&times;</button>
+		</td>
+	</tr>
+</template>
