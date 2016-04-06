@@ -24,5 +24,3 @@ Please do have a look here: https://github.com/itsnhduc/MeteorLEGO
 8. social: (share on social network) add code for sharing the current situation on social network, _note_: use packages on atmospherejs.com
 9. router: (route definition for navigation) add code for navigating and login status verification for the routes, _note_: see *iron:router* documentation
 10. collection: (MongoDB collections) add code for declaring the collections
-
-#### Note: Remember to branch out first and commit to it. *DO NOT COMMIT TO MASTER*
