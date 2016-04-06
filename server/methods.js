@@ -3,7 +3,7 @@
 if (Meteor.isServer) {
 
 	Meteor.publish('backups', function () {
-		return Backups.find({}, {sort: {option: -1}, limit: 1});
+		return Backups.find({}, {sort: {option: 1}});
 	}); 
 	Meteor.publish('incidents', function() {
 		return Incidents.find();
@@ -17,6 +17,9 @@ if (Meteor.isServer) {
 	Meteor.publish('dengueDatas', function() {
 		return DengueDatas.find();
 	});
+	Meteor.publish('users', function() {
+		return Meteor.users.find();
+	})
 	/* Publish the backup option list to client (actually only the one with
 	 largest option value) */
 
@@ -41,10 +44,15 @@ if (Meteor.isServer) {
 	}, 300000);
 	/* Periodically refresh the activation code by an interval of 5 min */
 
+	isAdmin = false;
+
 	Meteor.startup(function () {
 		process.env.TWILIO_ACCOUNT_SID = 'AC061f3261f802d23a6dd90f35a3eefa71';
 		process.env.TWILIO_AUTH_TOKEN = '024296fd85ec53f8e75569944800c343';
 		process.env.TWILIO_NUMBER = '+12035806804';
+		// Accounts.createUser({
+		// 	username: "admin", password: "admin"
+		// });
 		/* Twilio account details */
 			// Accounts.createUser({
 			// 	username: 'duc',
@@ -86,14 +94,15 @@ if (Meteor.isServer) {
 			console.log('Option ' + option + ' changed to ' + number + '!');
 		},
 		/* Change the number of a specific option */
-		addAgency: function (option, number) {
-			console.log('added ' + number + '!');
-			Backups.insert({option: String(option), number: number});
+		addAgency: function (option, name, number) {
+			console.log('Agency: ' + name + ' added with ' + number + '!');
+			Backups.insert({option: String(option), name: name, number: number});
 		},
 		/* Add an agency (new option) with its phone number to the database */
 
 		sendCode: function () {
 			Meteor.call('sendMessage', 0, activationCode);
+			console.log('Activation code sent to administrator!');
 		},
 		/* Send the activation code to the operator (send option=0) - reuse sendMessage function*/
 		authenticateCode: function (inputCode) {
@@ -102,13 +111,40 @@ if (Meteor.isServer) {
 			else
 				console.log('Wrong Activation Code');
 		},
+		/* Authenticate the code input by user */
 		addIncident: function(wrap) {
 			Incidents.insert(wrap, function(err) {
 				if (err) {
 					throw new Meteor.Error(err);
 				}
 			});
+		},
+		authenticateAdmin: function(username, password) {
+			console.log('Input: ' + username + ' ' + password);
+			var admin = Admins.findOne({username: username});
+			if (admin.password == password) {
+				isAdmin = true;
+				return true;
+			}
+			else {
+				return false;
+			}
+		},
+		logoutAdmin: function() {
+			isAdmin = false;
+		},
+		isAdmin: function() {
+			return isAdmin;
+		},
+		createOperator: function(username, password) {
+			Accounts.createUser({
+				username: username, password: password
+			});
+		},
+		removeOperator: function(id) {
+			console.log(id);
+			console.log(typeof id);
+			Meteor.users.remove({_id: id});
 		}
-		/* Authenticate the code input by user */
 	});
 }
