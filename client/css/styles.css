@@ -68,11 +68,11 @@ form > table > tr > td > button {
 }
 
 .crisis-text {
-	color: red;
 	position: absolute;
 	top: 0px;
 	right: 20px;
 }
+
 .report-text-containter {
 	margin: 20px;
 }

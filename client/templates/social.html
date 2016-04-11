@@ -9,11 +9,9 @@
 					<th><label for="incident">Select incident: </label></th>
 					<td>
 						<select id="incident" class="form-control">
-							<option>A</option>
-							<option>B</option>
-							<option>C</option>
-							<option>D</option>
-							<option>E</option>
+							{{#each incidents}}
+								{{> incident}}
+							{{/each}}
 						</select>
 					</td>
 				</tr>
@@ -37,11 +35,15 @@
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-default" id="previewBtn">Preview</button>
 						<button class="btn btn-default" id="publishBtn">Publish</button>
+						<button class="btn btn-default" id="previewBtn">Preview</button>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+</template>
+
+<template name="incident">
+	<option>{{location}} - {{details}}</option>
 </template>

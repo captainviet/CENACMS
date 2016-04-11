@@ -9,7 +9,11 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/">&nbsp;CENA CMS</a>
-				<h1 class="crisis-text {{isCrisis}}">CRISIIIIIIIIIS</h1>
+				{{#if isCrisis}}
+					<h1 class="crisis-text" style="color: red">CRISIS MODE: ON</h1>
+				{{else}}
+					<h1 class="crisis-text">CRISIS MODE: OFF</h1>
+				{{/if}}
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-content">
 				<ul class="nav navbar-nav navbar-right">
@@ -27,7 +31,7 @@
 							<a id="social" class="nav-btn" href="/social">Send Update</a>
 						</li>
 						<li>
-							<a id="report" class="nav-btn" href="/report">Report</a>
+							<a id="report" class="nav-btn" href="/report">Incident List</a>
 						</li>
 					{{else}}
 						<li>
@@ -36,9 +40,6 @@
 					{{/if}}
 					<li>
 							<a id="map" class="nav-btn" href="/map">View Map</a>
-					</li>						
-					<li>
-						<a id="settings" class="nav-btn" href="#"><i class="fa fa-cog"></i></a>
 					</li>
 				</ul>
 			</div>

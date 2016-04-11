@@ -37,11 +37,11 @@ if (Meteor.isClient) {
 			var agencyName = $('#agency-name').val();
 			var agencyNumber = $('#agency-number').val();
 
-			if ((agencyNumber.charAt(0) !== '8' && agencyNumber.charAt(0) !== '9' && agencyNumber.charAt(0) !== '+') || agencyNumber.length != 8)
+			if ((agencyNumber.length != 8 || (agencyNumber.charAt(0) != 8 && agencyNumber.charAt(0) != 9)) && (agencyNumber.length != 11 || agencyNumber.substring(0, 3) != '+65'))
 				alert('Invalid Singapore number!');
 			/* Reject insertion request if the number is not a valid Singaporean number (international) */
 			else {
-				if (agencyNumber.charAt(0) !== '+') {
+				if (agencyNumber.charAt(0) != '+') {
 					agencyNumber = '+65' + agencyNumber;
 					/* Add country code to the number if it's in local form */
 				}

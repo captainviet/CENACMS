@@ -1,9 +1,7 @@
 if (Meteor.isClient) {
 
-	Meteor.subscribe('incidents', {
-		onReady: function() {
-			Session.set('reportIncidents', Incidents.find().fetch());
-		}
+	Meteor.subscribe('incidents', function() {
+		Session.set('reportIncidents', Incidents.find().fetch());
 	});
 
 	var queryGenerator = function(str) {

@@ -22,6 +22,12 @@ if (Meteor.isClient) {
         });
     };
 
+    Template.social.helpers({
+        incidents: function () {
+            return Incidents.find({});
+        }
+    });
+
     Template.social.events({
 
         /**
@@ -60,7 +66,7 @@ if (Meteor.isClient) {
 function generatePost() {
     var type = $('#incident').val();
     var content = $('#content').val();
-    return 'Incident type ' + type + ' happened!\n' + 'Details: ' + content;
+    return 'Incident: ' + type + ' happened!\n' + 'Details: ' + content;
 }
 
 function postToPage(publishMessage) {

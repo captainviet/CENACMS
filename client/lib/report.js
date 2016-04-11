@@ -4,8 +4,13 @@ if (Meteor.isClient) {
 		return Session.get('activeReportType') == type ? 'btn-primary' : 'btn-default';
 	}
 
+	Meteor.subscribe('incidents');
+
 	Template.report.onRendered(function() {
 		Session.set('activeReportType', 'table');
+		// if (Session.get('reportIncidents').length != Incidents.find().fetch().length) {
+		// 	location.reload();
+		// }
 	});
 
 	Template.report.helpers({

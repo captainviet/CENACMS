@@ -18,9 +18,7 @@ if (Meteor.isClient) {
 
 	Template.master.helpers({
 		'isCrisis': function() {
-			if (!Session.get('isCrisis')) {
-				return 'hidden';
-			}
+			return Session.get('isCrisis');
 		}
 	});
 

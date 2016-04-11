@@ -8,6 +8,7 @@ if (Meteor.isClient) {
 	Template.userAdmin.onRendered(function() {
 		this.autorun(function() {
 			Template.currentData();
+			Session.set('error', null);
 		})
 	});
 
@@ -77,8 +78,17 @@ if (Meteor.isClient) {
 			if (confirm("Confirm delete user from List of Operators?"
 				+ "\n" + "NOTE: Action cannot be reversed!")) {
 				console.log(this._id);
-				Meteor.call('removeOperator', this._id);
-				alert("Successfully remove Operator!");
+				Meteor.call('removeOperator', this._id, function (err, result) {
+					if (err) {
+						console.log(err);
+						throw new Meteor.Error(err);
+					}
+					if (result) {
+						alert("Operator removal successful!");
+					} else {
+						alert("Operator not exists!");
+					}
+				});
 			} else {
 				alert("Operator removal aborted!");
 			}

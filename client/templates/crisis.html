@@ -2,7 +2,7 @@
 
 <template name="crisis">
 	<div class="col-md-4 col-md-offset-4">
-		<h3 class="text-center">Activate Crisis Mode <img src="/img/panic.png"></h3>
+		<h3 class="text-center">{{workMode}} Crisis Mode <img src="/img/panic.png"></h3>
 		<br>
 		<form>
 			<table class="table">
@@ -18,7 +18,7 @@
 					<tr>
 						<td></td>
 						<td>
-							<button id="panic" class="btn btn-default">Panic!</button>
+							<button id="panic" class="btn btn-default">{{actionMode}}</button>
 							<button id="cancel" class="btn btn-default">Cancel</button>
 						</td>
 					</tr>
