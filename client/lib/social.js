@@ -31,13 +31,17 @@ if (Meteor.isClient) {
         'click #publishBtn': function (event) {
             event.preventDefault();
             var fbChecked = $('#facebookCheckBox').is(':checked');
-            var twChecked = $('#twitterCheckBox').is(':checked');
+            
             if (fbChecked) {
                 publishToFacebook();
             }
-            if (twChecked) {
-                publishToTwitter();
+            else{
+                var twChecked = $('#twitterCheckBox').is(':checked');
+                if (twChecked) {
+                    publishToTwitter();
+                }
             }
+            
         },
 
         /**
@@ -73,6 +77,10 @@ function postToPage(publishMessage) {
             message: publishMessage
         }, function(response) {
             console.log(response);
+            var twChecked = $('#twitterCheckBox').is(':checked');
+            if (twChecked) {
+                publishToTwitter();
+            }
         })
     });
 }
@@ -110,6 +118,7 @@ function publishToFacebook() {
 }
 
 function publishToTwitter() {
+    console.log('twitter');
     var publishMessage = generatePost();
     var twtLink = 'http://twitter.com/home?status=' +encodeURIComponent(publishMessage);
     window.open(twtLink,'_blank');
