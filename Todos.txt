@@ -1,0 +1,8 @@
+- Realistic crisis time and resource name?
+- Mail report
+- Auto refresh Report/Map
+- Remove the setting
+- User feedback (alert)
+- Rename Report --> Incident
+- Crisis switch
+- [optional] 

@@ -12,7 +12,7 @@ if (Meteor.isClient) {
 			return Session.get('add-agency');
 		},
 		agencies: function() {
-			return Backups.find({name: {$not: "Administrator"}});
+			return Backups.find({option: {$not: "0"}});
 		}
 	})
 	/* Return the add-agency session variable to the client .html*/
