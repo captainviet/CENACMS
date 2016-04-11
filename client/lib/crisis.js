@@ -20,11 +20,11 @@ if (Meteor.isClient) {
 			event.preventDefault();
 			var inputCode = $('#act-code').val();
 			$('#act-code').val("")
-			Meteor.call('authenticateCode', inputCode, function(err) {
+			Meteor.call('authenticateCode', inputCode, function(err, result) {
 				if (err) {
 					throw new Meteor.Error(err);
 				} else {
-					Session.set('isCrisis', true);
+					Session.set('isCrisis', result);
 				}
 			});	// Request the server to authenticate the code
 		},												 
