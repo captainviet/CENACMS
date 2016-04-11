@@ -50,6 +50,16 @@ if (Meteor.isServer) {
 		process.env.TWILIO_ACCOUNT_SID = 'AC061f3261f802d23a6dd90f35a3eefa71';
 		process.env.TWILIO_AUTH_TOKEN = '024296fd85ec53f8e75569944800c343';
 		process.env.TWILIO_NUMBER = '+12035806804';
+		if (Admins.find().fetch().length) {
+			console.log('has admin already');
+		} else {
+			Admins.insert({username: "admin", password: "admin"});
+		}
+		if (Backups.find().fetch().length) {
+			console.log('has backup');
+		} else {
+			Backups.insert({option: "0", number: "+6583567597", name: "System"});
+		}
 		// Accounts.createUser({
 		// 	username: "admin", password: "admin"
 		// });
